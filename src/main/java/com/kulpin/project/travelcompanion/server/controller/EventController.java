@@ -3,6 +3,7 @@ package com.kulpin.project.travelcompanion.server.controller;
 
 import com.kulpin.project.travelcompanion.server.entity.Event;
 import com.kulpin.project.travelcompanion.server.service.EventService;
+import com.kulpin.project.travelcompanion.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -23,20 +24,20 @@ public class EventController {
 
     @RequestMapping(value = "/events", method = RequestMethod.GET)
     @ResponseBody
-    public List<Event> getAllReminders(){
+    public List<Event> getAllEvents(){
         return service.getAll();
     }
 
     @RequestMapping(value = "/events/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Event getReminder(@PathVariable("id") long remindID){
-        return service.getByID(remindID);
+    public Event getEvent(@PathVariable("id") long eventID){
+        return service.getByID(eventID);
     }
 
     @RequestMapping(value = "/events", method = RequestMethod.POST)
     @ResponseBody
-    public Event saveReminder(@RequestBody Event remind){
-        return service.save(remind);
+    public Event saveEvent(@RequestBody Event event){
+        return service.save(event);
     }
 
     @RequestMapping(value = "/events/{id}", method = RequestMethod.POST)

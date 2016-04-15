@@ -1,27 +1,28 @@
 package com.kulpin.project.travelcompanion.server.service;
 
 import com.kulpin.project.travelcompanion.server.entity.Event;
-import com.kulpin.project.travelcompanion.server.repository.EventRepository;
+import com.kulpin.project.travelcompanion.server.entity.Journey;
+import com.kulpin.project.travelcompanion.server.repository.JourneyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class EventServiceImpl implements EventService{
+public class JourneyService {
     @Autowired
-    private EventRepository repository;
+    private JourneyRepository repository;
 
-    public List<Event> getAll() {
+    public List<Journey> getAll() {
         return repository.findAll();
     }
 
-    public Event getByID(long id) {
+    public Journey getByID(long id) {
         return repository.findOne(id);
     }
 
-    public Event save(Event event) {
-        return repository.saveAndFlush(event);
+    public Journey save(Journey journey) {
+        return repository.saveAndFlush(journey);
     }
 
     public void remove(long id) {
