@@ -27,4 +27,37 @@ public class UserService {
     public void remove(long id){
         repository.delete(id);
     };
+
+    public User getByUsername(String username){
+        List<User> list = getAll();
+        for (User user : list){
+            if (user.getUsername().equals(username)) return user;
+        }
+        return null;
+    };
+
+    public User getByEmail(String email){
+        List<User> list = getAll();
+        for (User user : list){
+            if (user.getEmail().equals(email)) return user;
+        }
+        return null;
+    };
+
+    public boolean isRegisteredByUsername(String username){
+        List<User> list = getAll();
+        for (User user: list){
+            if(user.getUsername().equals(username)) return true;
+        }
+        return false;
+    }
+
+    public boolean isRegisteredByEmail(String email){
+        List<User> list = getAll();
+        for (User user: list){
+            if(user.getEmail().equals(email)) return true;
+        }
+        return false;
+    }
+
 }

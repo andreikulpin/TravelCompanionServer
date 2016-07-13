@@ -7,17 +7,17 @@ import java.util.Date;
 
 @Entity
 @Table(name = "event")
-public class Event {
+public class Event implements Comparable{
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
-    private long id_event;
+    private long id;
 
     @Column(name = "id_user", nullable = false)
-    private long id_user;
+    private long userId;
 
     @Column(name = "id_journey", nullable = false)
-    private long id_journey;
+    private long journeyId;
 
     @Column(name = "title", nullable = false, length = 50)
     private String title;
@@ -35,28 +35,34 @@ public class Event {
     public Event() {
     }
 
-    public long getId() {
-        return id_event;
+    public Event(String title, long journeyId, long userId) {
+        this.title = title;
+        this.journeyId = journeyId;
+        this.userId = userId;
     }
 
-    public void setId(long id) {
-        this.id_event = id;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long eventId) {
+        this.id = eventId;
     }
 
     public long getUserId() {
-        return id_user;
+        return userId;
     }
 
     public void setUserId(long userId) {
-        this.id_user = userId;
+        this.userId = userId;
     }
 
     public long getJourneyId() {
-        return id_user;
+        return journeyId;
     }
 
     public void setJourneyId(long journeyId) {
-        this.id_user = journeyId;
+        this.journeyId = journeyId;
     }
 
     public String getTitle() {
@@ -89,5 +95,13 @@ public class Event {
 
     public void setDistance(float distance) {
         this.distance = distance;
+    }
+
+    //@Override
+    public int compareTo(Object object) {
+        Event secondEvent = (Event)object;
+        if (this.eventDate.getTime() < secondEvent.getEventDate().getTime()) return -1;
+        if (this.eventDate.getTime() > secondEvent.getEventDate().getTime()) return 1;
+        return 0;
     }
 }

@@ -10,7 +10,7 @@ public class User {
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
-    private long id_user;
+    private long id;
 
     @Column(name = "username", nullable = false, length = 50)
     private String username;
@@ -30,11 +30,11 @@ public class User {
 
 
     public long getId() {
-        return id_user;
+        return id;
     }
 
-    public void setId(long id) {
-        this.id_user = id;
+    public void setId(long id_user) {
+        this.id = id_user;
     }
 
     public void setUsername(String username) {

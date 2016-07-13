@@ -7,14 +7,14 @@ import java.util.Date;
 
 @Entity
 @Table(name = "journey")
-public class Journey {
+public class Journey implements Comparable{
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
-    private long id_journey;
+    private long id;
 
     @Column(name = "id_user", nullable = false)
-    private long id_user;
+    private long userId;
 
     @Column(name = "title", nullable = false, length = 50)
     private String title;
@@ -31,19 +31,19 @@ public class Journey {
     }
 
     public long getId() {
-        return id_journey;
+        return id;
     }
 
-    public void setId(long id_journey) {
-        this.id_journey = id_journey;
+    public void setId(long journeyId) {
+        this.id = journeyId;
     }
 
     public long getUserId() {
-        return id_user;
+        return userId;
     }
 
     public void setUserId(long userId) {
-        this.id_user = userId;
+        this.userId = userId;
     }
 
     public String getTitle() {
@@ -70,4 +70,11 @@ public class Journey {
         this.endDate = endDate;
     }
 
+    //@Override
+    public int compareTo(Object object) {
+        Journey secondJourney = (Journey) object;
+        if (this.getStartDate().getTime() < secondJourney.getStartDate().getTime()) return -1;
+        if (this.getStartDate().getTime() > secondJourney.getStartDate().getTime()) return 1;
+        return 0;
+    }
 }
